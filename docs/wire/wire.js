@@ -45,11 +45,11 @@ function getHash() {
 }
 
 function calcWireResistance() {
+  let temperature = ei_temperature.value;
+  let wire_length = ei_wire_length.value;
+  let cross_section = eio_cross_section.value;
+  let wire_count = ei_wire_count.value;
   let materialIndex = ei_materials.selectedIndex;
-  let temperature = parseFloat(ei_temperature.value);
-  let wire_length = parseFloat(ei_wire_length.value);
-  let cross_section = parseFloat(eio_cross_section.value);
-  let wire_count = parseFloat(ei_wire_count.value);
   let roh20 = materials[materialIndex].roh20;
   let alpha = materials[materialIndex].alpha;
   roh = roh20 * (1 + (alpha * (temperature - 20.0) / 1000.0));
@@ -59,11 +59,10 @@ function calcWireResistance() {
 }
 
 function calcLosses() {
-  let voltage = parseFloat(ei_voltage.value);
-  let current = parseFloat(eio_current.value);
-  let wire_length = parseFloat(ei_wire_length.value);
-  let wire_vpercent_drop = eio_vpercent_drop
-  let cosphi = parseFloat(ei_cosphi.value);
+  let voltage = ei_voltage.value;
+  let current = eio_current.value;
+  let wire_length = ei_wire_length.value;
+  let cosphi = ei_cosphi.value;
   
   let voltage_drop = wireResistance * current * cosphi;
   eo_wire_voltage_drop.textContent = 
@@ -83,25 +82,25 @@ function calcLosses() {
 }
 
 function calculateCrossSection() {
-  let wire_length = parseFloat(ei_wire_length.value);
-  let wire_count = parseFloat(ei_wire_count.value);
-  let voltage = parseFloat(ei_voltage.value);
-  let current = parseFloat(eio_current.value);
-  let vpercent_drop = parseFloat(eio_vpercent_drop.value);
+  let wire_length = ei_wire_length.value;
+  let wire_count = ei_wire_count.value;
+  let voltage = ei_voltage.value;
+  let current = eio_current.value;
+  let vpercent_drop = eio_vpercent_drop.value;
   if (vpercent_drop > 0) {
-    eio_cross_section.value =
-      (wire_count * wire_length * current * roh / vpercent_drop * 100 / voltage).toLocaleString(navigator.language, {maximumFractionDigits: 1});
+    eio_cross_section.value = Math.round(wire_count * wire_length * current * roh / vpercent_drop * 100 / voltage * 10) / 10;
   }
   calcWireResistance();
 }
 
 function updateCosPhi() {
   if (ei_wire_count.selectedIndex <= 1) { // DC
-    e_cosphi_input.className += " w3-hide";
+    e_cosphi_input.classList.add("w3-hide");
   }
   else { //AC
-    e_cosphi_input.className = e_cosphi_input.className.replace(" w3-hide", "");
+    e_cosphi_input.classList.remove("w3-hide");
   }
+  console.log(e_cosphi_input.className);
 }
 
 function changeLoad() {
@@ -113,12 +112,12 @@ function changeLoad() {
   }
   else if (wire_load == 2) { //AC
     voltage.value = 230;
-    ei_cosphi.value = (0.9).toLocaleString(navigator.language, {maximumFractionDigits: 2});
+    ei_cosphi.value = 0.9;
     ei_cosphi.disabled = false;
   }
   else if (wire_load == 3) { //ThreePhase
     voltage.value = 400;
-    ei_cosphi.value = (0.9).toLocaleString(navigator.language, {maximumFractionDigits: 2});
+    ei_cosphi.value = 0.9;
     ei_cosphi.disabled = false;
   }
   updateCosPhi();
@@ -128,9 +127,9 @@ function changeLoad() {
 
 function calcCurrent() {
   let wire_load = ei_wire_count.selectedIndex;
-  let voltage = parseFloat(ei_voltage.value);
-  let cosphi = parseFloat(ei_cosphi.value);
-  let power = parseFloat(eio_power.value);
+  let voltage = ei_voltage.value;
+  let cosphi = ei_cosphi.value;
+  let power = eio_power.value;
   let current;
   
   if (wire_load <= 1) { // DC
@@ -142,15 +141,15 @@ function calcCurrent() {
   else if (wire_load == 3) { //ThreePhase
     current = power * 1000.0 / voltage / Math.sqrt(3) / cosphi;
   }
-  eio_current.value = current.toLocaleString(navigator.language, {maximumFractionDigits: 2});
+  eio_current.value = Math.round(current * 100) / 100;
   calcLosses();
 }
 
 function calcPower() {
   let wire_load = ei_wire_count.selectedIndex;
-  let voltage = parseFloat(ei_voltage.value);
-  let current = parseFloat(eio_current.value);
-  let cosphi = parseFloat(ei_cosphi.value);
+  let voltage = ei_voltage.value;
+  let current = eio_current.value;
+  let cosphi = ei_cosphi.value;
   let power;
   
   if (wire_load <= 1) { // DC
@@ -162,7 +161,7 @@ function calcPower() {
   else if (wire_load == 3) { //ThreePhase
     power = voltage * Math.sqrt(3) * current * cosphi / 1000.0;
   }
-  eio_power.value = power.toLocaleString(navigator.language, {maximumFractionDigits: 2});
+  eio_power.value = Math.round(power * 100) / 100;
   calcLosses();
 }
 

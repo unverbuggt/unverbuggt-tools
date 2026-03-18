@@ -1,8 +1,8 @@
-site_name: epwg.de tools
-site_url: https://epwg.de
+site_name: unverbuggt.de tools
+site_url: https://unverbuggt.de/tools
 site_author: René Rüthlein
 
-repo_url: https://github.com/unverbuggt/epwg
+repo_url: https://github.com/unverbuggt/unverbuggt-tools
 
 theme:
     name: risonia
@@ -40,7 +40,7 @@ plugins:
           default: true
           build: true
           name: Deutsch
-          site_name: epwg.de Tools
+          site_name: unverbuggt.de Tools
       #  - build: true
       #    default: false
       #    locale: fr
@@ -58,13 +58,13 @@ plugins:
             Astronomie: Astronomy
             Elektrotechnik: Electrical engineering
             Informatik: Informatics
-          site_name: epwg.de tools
+          site_name: unverbuggt.de tools
       reconfigure_material: false
       reconfigure_search: false
 
   - color-theme:
-      theme_color: '#ff9933' #'#FF9933'
-      secondary_color: 'complementary'
+      theme_color: '#108def'
+      secondary_color: 'mono'
 
   - w3css-classes: {}
 

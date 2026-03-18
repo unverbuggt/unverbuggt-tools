@@ -37,10 +37,10 @@ Dabei fragt der Browser einen DNS Server nach der Adresse und bekommt als Antwor
 [IPv4](https://de.wikipedia.org/wiki/IPv4){ target="_blank" } oder [IPv6](https://de.wikipedia.org/wiki/IPv6){ target="_blank" }
 oder beides (dann entscheidet der Browser welches Protokoll er bevorzugt).
 
-Ich habe [wie-lautet-ip4.epwg.de](https://wie-lautet-ip4.epwg.de){ target="_blank" } so eingestellt,
+Ich habe [wie-lautet-ip4.unverbuggt.de](https://wie-lautet-ip4.unverbuggt.de){ target="_blank" } so eingestellt,
 dass nur eine IPv4 zurückgeliefert wird. Deshalb stellt der Browser die Verbindung auch rein über IPv4 her. 
 Der Server kennt die IP des Clients sobald eine Verbindung mit ihm aufgebaut wird.
-Bei [wie-lautet-ip6.epwg.de](https://wie-lautet-ip6.epwg.de){ target="_blank" } 
+Bei [wie-lautet-ip6.unverbuggt.de](https://wie-lautet-ip6.unverbuggt.de){ target="_blank" } 
 wird dagegen die Verbindung rein auf IPv6 gezwungen.
 
 Es kann sein, dass nur eine der beiden Felder eine IP Adresse anzeigt. Wenn z.B. alte Betriebssysteme oder Netzwerkgeräte für 
@@ -92,7 +92,7 @@ function getLoc(ip_id) {
   }
   gettingLoc = true;
   let loc = document.getElementById("iploc");
-  fetch('https://wie-lautet-' + ip_id + '.epwg.de/?city')
+  fetch('https://wie-lautet-' + ip_id + '.unverbuggt.de/?city')
   .then(
     function(response) {
       if (response.status == 200) {
@@ -126,7 +126,7 @@ function getAsn(ip_id) {
   }
   gettingAsn = true;
   let asn = document.getElementById("ipasn");
-  fetch('https://wie-lautet-' + ip_id + '.epwg.de/?asn')
+  fetch('https://wie-lautet-' + ip_id + '.unverbuggt.de/?asn')
   .then(
     function(response) {
       if (response.status == 200) {
@@ -142,7 +142,7 @@ function getAsn(ip_id) {
 
 function getIp(ip_id) {
   let ip = document.getElementById(ip_id);
-  fetch('https://wie-lautet-' + ip_id + '.epwg.de/')
+  fetch('https://wie-lautet-' + ip_id + '.unverbuggt.de/')
   .then(
     function(response) {
       if (response.status !== 200) {

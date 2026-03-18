@@ -122,4 +122,4 @@ var materials = [
   {"name": "Gold", "roh20": "0.022", "alpha": "3.9"}
 ];
 </script>
-<script type="text/javascript" src="/wire/wire.js"></script>
+<script type="text/javascript" src="../../wire/wire.js"></script>

@@ -1,6 +1,6 @@
 title: Good password generator
 
-<link rel="stylesheet" type="text/css" href="/dice/slider.css">
+<link rel="stylesheet" type="text/css" href="../../dice/slider.css">
 
 <div class="w3-cell-row w3-margin-bottom">
   <div class="w3-cell">
@@ -71,4 +71,4 @@ defaultOption.setAttribute('disabled', 'disabled');
 var dicepath = base_url+"/dice/";
 </script>
 
-<script type="text/javascript" src="/dice/dice.js"></script>
+<script type="text/javascript" src="../../dice/dice.js"></script>

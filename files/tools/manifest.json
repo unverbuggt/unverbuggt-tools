@@ -1,6 +1,6 @@
 {
-    "name": "epwg.de Tools",
-    "short_name" : "tools",
+    "name": "unverbuggt.de Tools",
+    "short_name" : "Tools",
     "start_url": "index.html",
     "scope" : "./",
     "icons": [
